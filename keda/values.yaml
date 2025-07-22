@@ -10,25 +10,25 @@ global:
 image:
   keda:
     # -- Image registry of KEDA operator
-    registry: ghcr.io
+    registry: docker.io
     # -- Image name of KEDA operator
-    repository: kedacore/keda
+    repository: tangobango/keda
     # -- Image tag of KEDA operator. Optional, given app version of Helm chart is used by default
-    tag: ""
+    tag: "v2.17.2-external-id"
   metricsApiServer:
     # -- Image registry of KEDA Metrics API Server
-    registry: ghcr.io
+    registry: docker.io
     # -- Image name of KEDA Metrics API Server
-    repository: kedacore/keda-metrics-apiserver
+    repository: tangobango/keda-metrics-apiserver
     # -- Image tag of KEDA Metrics API Server. Optional, given app version of Helm chart is used by default
-    tag: ""
+    tag: "v2.17.2-external-id"
   webhooks:
     # -- Image registry of KEDA admission-webhooks
-    registry: ghcr.io
+    registry: docker.io
     # -- Image name of KEDA admission-webhooks
-    repository: kedacore/keda-admission-webhooks
+    repository: tangobango/keda-admission-webhooks
     # -- Image tag of KEDA admission-webhooks . Optional, given app version of Helm chart is used by default
-    tag: ""
+    tag: "v2.17.2-external-id"
   # -- Image pullPolicy for all KEDA components
   pullPolicy: Always
 
