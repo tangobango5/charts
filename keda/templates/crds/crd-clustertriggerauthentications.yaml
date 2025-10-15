@@ -177,6 +177,11 @@ spec:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
                         type: string
+                      awsExternalID:
+                        description: AwsExternalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
+                        type: string
                     required:
                     - provider
                     type: object
@@ -286,6 +291,11 @@ spec:
                       roleArn:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
+                        type: string
+                      awsExternalID:
+                        description: AwsExternalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
                         type: string
                     required:
                     - provider
@@ -420,6 +430,11 @@ spec:
                       roleArn:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
+                        type: string
+                      awsExternalID:
+                        description: AwsExternalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
                         type: string
                     required:
                     - provider
