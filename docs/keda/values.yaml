@@ -14,21 +14,21 @@ image:
     # -- Image name of KEDA operator
     repository: tangobango5/keda
     # -- Image tag of KEDA operator. Optional, given app version of Helm chart is used by default
-    tag: "v2.17.2-external-id.v4"
+    tag: "v2.17.2-external-id.v3"
   metricsApiServer:
     # -- Image registry of KEDA Metrics API Server
     registry: ghcr.io
     # -- Image name of KEDA Metrics API Server
     repository: tangobango5/keda-metrics-apiserver
     # -- Image tag of KEDA Metrics API Server. Optional, given app version of Helm chart is used by default
-    tag: "v2.17.2-external-id.v4"
+    tag: "v2.17.2-external-id.v3"
   webhooks:
     # -- Image registry of KEDA admission-webhooks
     registry: ghcr.io
     # -- Image name of KEDA admission-webhooks
     repository: tangobango5/keda-admission-webhooks
     # -- Image tag of KEDA admission-webhooks . Optional, given app version of Helm chart is used by default
-    tag: "v2.17.2-external-id.v4"
+    tag: "v2.17.2-external-id.v3"
   # -- Image pullPolicy for all KEDA components
   pullPolicy: Always
 

@@ -1,0 +1,45 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  HELM_VERSION: "3.15.4"
+
+# Install Helm
+before_script:
+  - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+  - chmod 700 get_helm.sh
+  - ./get_helm.sh --version v${HELM_VERSION}
+
+# Build and package charts
+build_charts:
+  stage: build
+  script:
+    # Package all charts
+    - helm package keda --destination docs/
+    - helm package keda-external-id --destination docs/ || true  # Optional if you have this
+    - helm package http-add-on --destination docs/ || true      # Optional
+    
+    # Generate index
+    - helm repo index docs --url https://${CI_PROJECT_NAMESPACE}.gitlab.io/${CI_PROJECT_NAME}
+  artifacts:
+    paths:
+      - docs/
+  only:
+    - main
+    - master
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - cp -r docs/* public/
+  artifacts:
+    paths:
+      - public
+  dependencies:
+    - build_charts
+  only:
+    - main
+    - master 
