@@ -1,15 +1,9 @@
-{{- if .Values.crds.install }}
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
-    {{- if (or .Values.crds.additionalAnnotations .Values.additionalAnnotations) }}
-    {{- toYaml (merge .Values.crds.additionalAnnotations .Values.additionalAnnotations) | nindent 4 }}
-    {{- end }}
-  labels:
-    app.kubernetes.io/name: {{ .Values.operator.name }}
-    {{- include "keda.crd-labels" . | indent 4 }}
   name: clustertriggerauthentications.keda.sh
 spec:
   group: keda.sh
@@ -144,6 +138,11 @@ spec:
                       AuthPodIdentity allows users to select the platform native identity
                       mechanism
                     properties:
+                      externalID:
+                        description: externalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
+                        type: string
                       identityAuthorityHost:
                         description: Set identityAuthorityHost to override the default
                           Azure authority host. If this is set, then the IdentityTenantID
@@ -176,11 +175,6 @@ spec:
                       roleArn:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
-                        type: string
-                      awsExternalID:
-                        description: AwsExternalID sets the AWS External ID to be
-                          used when assuming a role. This is only applicable when
-                          using AWS pod identity with a RoleArn
                         type: string
                     required:
                     - provider
@@ -259,6 +253,11 @@ spec:
                       AuthPodIdentity allows users to select the platform native identity
                       mechanism
                     properties:
+                      externalID:
+                        description: externalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
+                        type: string
                       identityAuthorityHost:
                         description: Set identityAuthorityHost to override the default
                           Azure authority host. If this is set, then the IdentityTenantID
@@ -291,11 +290,6 @@ spec:
                       roleArn:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
-                        type: string
-                      awsExternalID:
-                        description: AwsExternalID sets the AWS External ID to be
-                          used when assuming a role. This is only applicable when
-                          using AWS pod identity with a RoleArn
                         type: string
                     required:
                     - provider
@@ -398,6 +392,11 @@ spec:
                       AuthPodIdentity allows users to select the platform native identity
                       mechanism
                     properties:
+                      externalID:
+                        description: externalID sets the AWS External ID to be
+                          used when assuming a role. This is only applicable when
+                          using AWS pod identity with a RoleArn
+                        type: string
                       identityAuthorityHost:
                         description: Set identityAuthorityHost to override the default
                           Azure authority host. If this is set, then the IdentityTenantID
@@ -430,11 +429,6 @@ spec:
                       roleArn:
                         description: RoleArn sets the AWS RoleArn to be used. Mutually
                           exclusive with IdentityOwner
-                        type: string
-                      awsExternalID:
-                        description: AwsExternalID sets the AWS External ID to be
-                          used when assuming a role. This is only applicable when
-                          using AWS pod identity with a RoleArn
                         type: string
                     required:
                     - provider
@@ -471,6 +465,8 @@ spec:
                       depending on the authentication method
                     properties:
                       serviceAccount:
+                        type: string
+                      serviceAccountName:
                         type: string
                       token:
                         type: string
@@ -528,6 +524,11 @@ spec:
                   AuthPodIdentity allows users to select the platform native identity
                   mechanism
                 properties:
+                  externalID:
+                    description: externalID sets the AWS External ID to be used
+                      when assuming a role. This is only applicable when using AWS
+                      pod identity with a RoleArn
+                    type: string
                   identityAuthorityHost:
                     description: Set identityAuthorityHost to override the default
                       Azure authority host. If this is set, then the IdentityTenantID
@@ -598,4 +599,3 @@ spec:
     storage: true
     subresources:
       status: {}
-{{- end -}}
